@@ -1,20 +1,39 @@
-let div_one = document.getElementById('green');
-let div_two = document.getElementById('red');
-let div_three = document.getElementById('result');
+let circle_one = document.getElementById('green');
+let circle_two = document.getElementById('red');
+let output_result = document.getElementById('result');
 
-function get_green_circle_info_by_click () {
-    div_one.style.backgroundColor = 'green';
-    div_two.style.backgroundColor = 'gray';
-    div_three.innerHTML = '<input type="text" value="Можно идти" readonly>'
+function allow_pass () {
+    circle_one.style.backgroundColor = 'green';
+    circle_two.style.backgroundColor = 'gray';
+    output_result.innerHTML = '<input type="text" value="Можно идти" readonly>'
     console.log('Зелёный')
 }
 
-function get_red_circle_info_by_click () {
-    div_two.style.backgroundColor = 'red';
-    div_one.style.backgroundColor = 'gray';
-    div_three.innerHTML = '<input type="text" value="Нельзя идти" readonly>';
+function denied_pass () {
+    circle_one.style.backgroundColor = 'gray';
+    circle_two.style.backgroundColor = 'red';
+    output_result.innerHTML = '<input type="text" value="Нельзя идти" readonly>';
     console.log('Красный')
 }
 
-div_one.addEventListener('click', get_green_circle_info_by_click)
-div_two.addEventListener('click', get_red_circle_info_by_click)
+function default_value () {
+    circle_two.style.backgroundColor = 'gray';
+    circle_one.style.backgroundColor = 'gray';
+    output_result.innerHTML = '<input type="text" readonly>';
+}
+
+circle_one.addEventListener('click', () => {
+    if (circle_one.style.backgroundColor === 'green') {
+        default_value();
+    } else {
+        allow_pass();
+    }
+});
+
+circle_two.addEventListener('click', () => {
+    if (circle_two.style.backgroundColor === 'red') {
+        default_value();
+    } else {
+        denied_pass();
+    }
+});
